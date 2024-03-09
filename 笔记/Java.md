@@ -326,11 +326,11 @@
 -   **switch**
 
     ```java
-    switch ( 表达式 ) {		// 表达式 : 将要匹配的值
-    	case 值 1,			// case : 被匹配的值，不重复且必须为常量
+    switch ( 表达式 ) {        // 表达式 : 将要匹配的值
+    	case 值 1,            // case : 被匹配的值，不重复且必须为常量
     		语句体 1;
-    		break;			// break : 结束 switch 语句
-    	case 值 2,			// default: 若 case 都不匹配，则执行
+    		break;            // break : 结束 switch 语句
+    	case 值 2,            // default: 若 case 都不匹配，则执行
     		语句体 2;
      		break;
     	...
@@ -424,7 +424,7 @@
     ```java
     int[] arr = {1, 2, 3 ,4 5}
     for (int i = 0; i < arr.length; i++) {
-    	System.out.print(arr[i] + "  ");	   // 输出方式一
+    	System.out.print(arr[i] + "  ");        // 输出方式一
     }
     System.out.print(Arrays.toString(arr));		// 输出方式二
     ```
@@ -455,7 +455,7 @@
     int[][] arr = {{1, 2, 3, 4}, {5, 6, 7, 8}};
     for (int i = 0; i < arr.length; i++) {
     	for (int j = 0; j < = arr[i].length; i++) {
-    		System.out.print(arr[i][j] + "  ");			 // 输出方式一
+    		System.out.print(arr[i][j] + "  ");		    // 输出方式一
     	}
     }
     // 输出方式二
@@ -490,7 +490,7 @@ public static void main(String[] args) {
     方法名(实际参数1, 实际参数2, ...);	// 调用
 }
 public static 数据类型 方法名(数据类型 变量名1, 形式参数2, ...) {  
-    方法体		// 定义
+    方法体		                        // 定义
     return;
 }
 ```
