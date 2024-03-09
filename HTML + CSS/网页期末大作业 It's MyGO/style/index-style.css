@@ -1,0 +1,229 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.wrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+header .wrap {
+    height: 80px;
+    display: flex;
+}
+
+header .wrap>* {
+    flex: 1;
+}
+
+header .wrap .logo img {
+    margin-top: 20px;
+    width: 170px;
+}
+
+header nav {
+    display: flex;
+    font-size: 18px;
+}
+
+header nav a {
+    font-family: sans-serif;
+    color: #fff;
+    flex: 1;
+    transition: all 500ms;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav a:hover {
+    color: #fff;
+    background: #1d7490;
+}
+
+.shouye {
+    background-image: url('../image/banner1.png');
+    background-size: cover;
+    width: 100%;
+}
+
+.banner div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.banner div h1 {
+    font-size: 78px;
+    font-family: serif;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0px 0px 5px rgba(0, 191, 255, 0.35),
+                 0px 0px 10px rgba(0, 191, 255, 0.35),
+                 0px 0px 20px rgba(0, 191, 255, 0.35),
+                 0px 0px 25px rgba(0, 191, 255, 0.35);
+    margin-top: 30%;
+    margin-bottom: 16%;
+}
+
+.chengyuan {
+    background-image: url('../image/bg1.jpg');
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.chengyuan div h4 {
+    font-size: 26px;
+    font-weight: lighter;
+    font-family: 华文宋体;
+    color: #fff;
+    text-align: center;;
+    padding-top: 165px;
+}
+
+.chengyuan ul {
+    margin-top: 11%;
+    margin-bottom: 0.5%;
+    display: flex;
+    justify-content: center;
+}
+
+.chengyuan ul li img {
+    width: 310px;
+}
+
+.chengyuan ul li .pic1 {
+    margin-top: 67px;
+    margin-right: 16px;
+}
+
+.chengyuan ul li .pic2 {
+    margin-right: 16px;
+}
+
+.dongtai {
+    background-image: url('../image/bg2.jpg');
+    background-size: cover;
+    width: 100%;
+    height: auto;
+}
+
+.dongtai h4 {
+    font-size: 34px;
+    letter-spacing: 1px;
+    font-weight: lighter;
+    font-family: 华文宋体;
+    color: #fff;
+    text-shadow: 0px 0px 5px rgba(27, 78, 77, 0.35),
+                 0px 0px 5px rgba(27, 78, 77, 0.35),
+                 0px 0px 5px rgba(27, 78, 77, 0.35),
+                 0px 0px 5px rgba(27, 78, 77, 0.35);
+    text-align: center;;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.dongtai div {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.dongtai div .t1 li img{
+    width: 600px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px rgba(27, 78, 77, 0.35),
+                0px 0px 10px rgba(27, 78, 77, 0.35),
+                0px 0px 20px rgba(27, 78, 77, 0.35),
+                0px 0px 25px rgba(27, 78, 77, 0.35);
+}
+
+.dongtai div .t2 li img {
+    width: 600px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px rgba(27, 78, 77, 0.35),
+                0px 0px 10px rgba(27, 78, 77, 0.35),
+                0px 0px 20px rgba(27, 78, 77, 0.35),
+                0px 0px 25px rgba(27, 78, 77, 0.35);
+}
+
+footer {
+    font-size: 14px;
+    background: #0b2636;
+    color: rgba(255, 255, 255, 0.3);
+    padding-top: 100px;
+}
+
+footer div {
+    display: flex;
+    justify-content: center;
+}
+
+footer .logo img {
+    width: 300px;
+    padding-right: 200px;
+}
+
+footer .lianjie {
+    width: 600px;
+    flex-flow: wrap;
+    align-content: start;
+    justify-content: flex-start;
+}
+
+footer .lianjie a {
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: bolder;
+    color: #fff;
+    vertical-align:middle;
+}
+
+footer .lianjie a span {
+    margin-right: 55px;
+}
+
+footer .lianjie a img{
+    width: 22px;
+    vertical-align:middle;
+    padding-right: 5px;
+}
+
+footer h4 {
+    font-size: 14px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+footer .lianjie .share {
+    margin-top: 60px;
+    align-items: center;    
+}
+
+footer .lianjie .share .logo3 {
+    width: 150px;
+}
+
+footer .lianjie .share a {
+    margin-left: 30px;
+}
+
+footer .lianjie .share a .logo4 {
+    width: 40px;
+    height: 40px;
+}
