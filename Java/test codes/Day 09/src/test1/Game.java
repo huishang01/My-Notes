@@ -6,10 +6,6 @@ public class Game {
     // 成员变量
     private String name;
     private int HP;
-    // 男性外貌
-    String[] boyfaces = {"风流俊雅", "气宇轩昂", "相貌英俊", "五官端正", "相貌平平", "一塌糊涂", "面目狰狞"};
-    // 女性外貌
-    String[] girlfaces = {"美奂绝伦", "沉鱼落雁", "婷婷玉立", "身材娇好", "相貌平平", "相貌简陋", "惨不忍睹"};
 
     // 空参构造
     public Game() {
