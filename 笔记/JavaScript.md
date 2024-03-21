@@ -9,7 +9,7 @@
 ```html
 <body>
   <script>
-    alert('嗨，欢迎来传智播学习前端技术！')
+    alert('Hello,world')
   </script>
 </body>
 ```
