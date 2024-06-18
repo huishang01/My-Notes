@@ -185,6 +185,8 @@
 
 >   第一类和第二类不能混用！若第一类在前，第二类会接收不到数据
 
+
+
 ### 运算符
 
 ------
@@ -818,6 +820,8 @@ public class Printf {
 
 ### 常用API
 
+------
+
 #### 链式编程
 
 ```java
@@ -874,6 +878,7 @@ String result = new StringBuilder().append("字符串").reverse().toString();
 | `.toString()`    | 转换为字符串                                                 |
 | `.replace()`     | 替换元素                                                     |
 | `.join()`        | 在字符串数组之间添加间隔符                                   |
+| `.lastChar()`    | 返回字符串最后一个字符                                       |
 
 #### StringBuild 类
 
@@ -906,4 +911,65 @@ StringJoiner sj = new StringJoiner("间隔符", "前缀", "后缀");
 | 方法     | 作用     |
 | -------- | -------- |
 | `.add()` | 添加元素 |
+
+
+
+### ArrayList
+
+------
+
+#### ArrayList类概述
+
+提供一种存储空间可变的存储模型，存储的数据容量可以发生改变
+
+**创建：**`ArrayList<泛型> 集合名 = new ArrayList<>();`
+
+**特点：**长度可变，只能存储引用数据类型
+
+**泛型的使用：**约束集合中存储元素的数据类型
+
+#### 常用方法：
+
+| 方法               | 说明                               |
+| ------------------ | ---------------------------------- |
+| `.add(元素)`       | 添加元素                           |
+| `.remove(元素)`    | 删除指定元素                       |
+| `.remove(索引)`    | 删除指定索引处的元素               |
+| `.set(索引, 元素)` | 修改指定索引处的元素               |
+| `.get(索引)`       | 返回指定索引处的元素               |
+| `size()`           | 返回集合中的元素的个数（集合长度） |
+
+#### 遍历
+
+```java
+public class ArrayListDemo3 {
+    public static void main(String[] args) {
+        //1.创建集合对象
+        ArrayList<String> list = new ArrayList<>();
+
+        //2.添加元素
+        list.add("aaa");
+        list.add("bbb");
+        list.add("ccc");
+        list.add("ddd");
+
+        //3.遍历
+        //快捷键: list.fori 正向遍历
+        //list.forr 倒着遍历
+        System.out.print("[");
+        for (int i = 0; i < list.size(); i++) {
+            //i 依次表示集合里面的每一个索引
+
+            if(i == list.size() - 1){
+               //最大索引
+                System.out.print(list.get(i));
+            }else{
+                //非最大索引
+                System.out.print(list.get(i) + ", ");
+            }
+        }
+        System.out.print("]");
+    }
+}
+```
 
