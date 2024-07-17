@@ -554,11 +554,11 @@ for key in 字典.keys():
 
 ### 写入文件
 
-| 方法名                                              | 说明                 |
-| --------------------------------------------------- | -------------------- |
-| `变量名 = open("路径", "w", encoding = "编码格式")` | 打开文件，模式为写入 |
-| `文件对象.write("写入内容")`                        | 写入指定字符串       |
-| `文件对象.flush()`                                  | 保存文件             |
+| 方法名                                            | 说明                 |
+| ------------------------------------------------- | -------------------- |
+| `变量名 = open("路径", "w", encoding="编码格式")` | 打开文件，模式为写入 |
+| `文件对象.write("写入内容")`                      | 写入指定字符串       |
+| `文件对象.flush()`                                | 保存文件             |
 
 >   1.   在写入时，若文件不存在，会创建新的文件
 >   2.   在写入时，若文件存在，会将原有内容清空
@@ -677,7 +677,7 @@ finally:
 
 **模块重名：** 当模块重名时，默认调用的是后面导入的模块
 
-**精确控制模块中成员的导入行为：** `__all__ = ['函数1', '函数2', ...]`
+**精确控制模块中成员的导入行为：** `__all__ = ['函数1', '函数2', ...]``
 
 `__all__`是一个特殊的 Python 变量，用于定义一个模块中哪些成员会被`from 模块名 import *`导入。当你使用`from 模块名 import *`语句导入模块时，解释器会检查被导入模块中是否定义了`__all__`变量，如果有定义，那么只有`__all__`中列出的成员会被导入。
 
@@ -714,6 +714,193 @@ finally:
 | `numpy`                   | 科学计算   |
 | `pandas`                  | 数据分析   |
 | `pyspark`、`apache-flink` | 大数据计算 |
-| `matplotlib`、`pyecharts` | 图形可视化 |
+| `matplotlib`、`pyecharts` | 数据可视化 |
 | `tensorflow`              | 人工智能   |
+
+
+
+## 数据可视化
+
+------
+
+### JSON 数据格式
+
+**含义：** JSON 是一种轻量级的数据交互格式，本质上是一个带有特定格式的字符串。JSON 可以在各种编程语言中流通
+
+**格式：** JSON是 列表 + 字典 的数据格式
+
+#### 数据的相互转化
+
+```python
+# 导入 JSON 模块
+import json
+# 把 Python 数据转换为 JSON 数据
+变量名 = json.dumps(数据)
+# 可以加上 ensure_ascii=False 参数来确保中文正常转换
+变量名 = json.dumps(数据, ensure_ascii=False)
+# 把 JSON 数据转换为 Python 数据
+变量名 = json.loads(数据)
+```
+
+#### 数据处理
+
+```python
+# 导入 JSON 模块
+import json
+# 把不符合 JSON 数据格式的头部去掉 
+data = data.replace("jsonp_1629350871167_29498(", "") 
+# 把不符合 JSON 数据格式的尾部去掉 
+data = data[:-2] 
+# 数据格式符合 JSON 格式后，转化成 Python 数据
+data = json.loads(data)
+```
+
+
+
+### pyecharts 模块
+
+**含义：** [Pyecharts 是一个基于 Python 的数据可视化库，它提供了一种简单而强大的方式来创建各种类型的交互式图表](https://pyecharts.org/#/zh-cn/)
+
+**命令安装：** `lpip install pyecharts`
+
+#### 构建基础折线图
+
+```python
+# 导包
+form pyecharts.charts import Line
+# 创建折线图对象
+line = Line()
+# 添加 X 轴数据
+line.add_xaxis([列表数据])
+# 添加 Y 轴数据，并设置数据显示为隐藏
+line.add_yaxis("数据名", [列表数据], label_opts=opts.LabelOpts(is_show=False))
+# 生成图表
+line.render()
+```
+
+ **常用全局配置项：** 
+
+```python
+# 导包
+from pyecharts import options as opts
+# 添加全局配置项
+line.set_global_opts(
+    # 添加左位置居中，下位置1%的标题
+    title_opts=opts.TitleOpts(title="标题", pos_left = "center", pos_bottm = "1%")
+    # 显示图例组件
+    legend_opts=opts.LegendOpts(is_show=True)
+    # 显示工具箱组件
+    toolbox_opts=opts.ToolboxOpts(is_show=True)
+    # 显示视觉映射配置
+    visualmap_opts=opts.VisualMapOpts(is_show=True)
+    # 显示提示框组件
+    tooltip_opts=TooltipOpts(is_show=True)
+)
+```
+
+#### 构建基础地图
+
+```python
+# 导包
+from pyecharts.charts import Map
+# 创建地图对象
+map = Map()
+# 添加地图数据
+map.add("标题", 数据, "地区")
+```
+
+**常用全局配置项：**
+
+```python
+# 导包
+from pyecharts.options import VisualMapOpts
+# 添加全局配置项
+map.set_global_opts(
+    # 显示视觉映射配置
+    visualmap_opts=VisualMapOpts(
+        # 是否显示视觉映射配置
+        is_show=True,
+        # 是否为分段型
+        is_piecewise=True,
+        # 自定义的每一段的范围，以及每一段的文字，以及每一段的特别的样式
+        pieces=[
+            # 不指定 min，表示 min 为无限小
+            {"max": 9, "label": "1-9"},
+            # 自定义 label 范围说明
+            {"min": 10, "max": 200, "label": '10 到 200'},
+            # 自定义特殊颜色
+            {"min": 200, "max": 300, "color": 'grey'},
+            # 表示 value 等于 123 的情况
+            {"value": 123, "label": '123'}, 
+            # 不指定 max，表示 max 为无限大
+            {"min": 1500}
+        ]
+    )
+)
+```
+
+#### 构建动态展示柱状图
+
+**基础柱状图：**
+
+```python
+# 导包
+from pyecharts.charts import Bar
+# 构建柱状图对象
+bar = Bar()
+# 添加 X 轴数据
+bar.add_xaxis([列表数据])
+# 添加 Y 轴数据，标签数值显示在右侧
+bar.add_yaxis("标题", [列表数据], label_opts=LabelOpts(position="right"))
+# 反转 XY 轴
+bar.reversal.axis()
+# 生成图表
+bar.render("文件名")
+```
+
+**基础时间线柱状图：**
+
+```python
+# 导包
+from pyecharts.charts import Bar, Timeline
+from pyecharts.options import *
+from pyecharts.globals import ThemeType
+# 创建时间线对象
+timeline = Timeline(
+    {"theme": ThemeType.LIGHE}    # 设置时间线主题
+)
+# 给 timeline 添加柱状图
+timeline.add(图表实例1, "时间点标题")
+timeline.add(图表实例2, "时间点标题")
+# 设置自动播放
+timeline.add_schema(
+    play_interval=1000,    # 时间间隔，单位毫秒
+    is_timeline_show=True, # 是否在自动播放的时候显示时间线
+    is_auto_play=True,     # 是否自动播放
+    is_loop_play=True      # 是否循环自动播放
+)
+# 通过时间线绘图
+timeline.render("文件名")
+```
+
+| 方法                       | 主题   | 备注       |
+| -------------------------- | ------ | ---------- |
+| `ThemeType.WHITE`          | 红蓝   | 默认颜色   |
+| `ThemeType.LIGHT`          | 蓝黄分 | 高亮颜色   |
+| `ThemeType.DARK`           | 红蓝   | 黑色背景   |
+| `ThemeType.CHALK`          | 红蓝绿 | 黑色背景   |
+| `ThemeType.ESSOS`          | 红黄   | 暖色系     |
+| `ThemeType.INFOGRAPHIC`    | 红蓝黄 | 偏亮       |
+| `ThemeType.MACARONS`       | 紫绿   |            |
+| `ThemeType.PURPLE_PASSION` | 粉紫   | 灰色背景   |
+| `ThemeType.ROMA`           | 红黑灰 | 偏暗       |
+| `ThemeType.ROMANTIC`       | 红粉蓝 | 淡黄色背景 |
+
+#### 数据容器指定排序
+
+```python
+# key指定排序依据的函数，reverse表示是否反转排序结果
+# 排序依据为列表的第二个元素的数字，结果为降序
+my_list.sort(key=lambda element: element[1], reverse=Ture)
+```
 
