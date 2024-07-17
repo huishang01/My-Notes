@@ -891,7 +891,7 @@ timeline.render("文件名")
 | `ThemeType.CHALK`          | 红蓝绿 | 黑色背景   |
 | `ThemeType.ESSOS`          | 红黄   | 暖色系     |
 | `ThemeType.INFOGRAPHIC`    | 红蓝黄 | 偏亮       |
-| `ThemeType.MACARONS`       | 紫绿   |            |
+| `ThemeType.MACARONS`       | 紫蓝   | 灰白背景   |
 | `ThemeType.PURPLE_PASSION` | 粉紫   | 灰色背景   |
 | `ThemeType.ROMA`           | 红黑灰 | 偏暗       |
 | `ThemeType.ROMANTIC`       | 红粉蓝 | 淡黄色背景 |
