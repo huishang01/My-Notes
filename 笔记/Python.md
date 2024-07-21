@@ -1006,9 +1006,60 @@ my_list.sort(key=lambda element: element[1], reverse=Ture)
 
      分析 JS 代码
 
+### 网络请求与相应
+
+#### 网络请求（HTTP Request）
+
+**请求行：** 
+
+-   方法：如 GET、POST、PUT、DELETE 等，表示对资源的操作类型
+-   路径：请求的资源在服务器上的位置
+-   协议版本：通常是 HTTP/1.1 或 HTTP/2
+
+**请求头（Headers）：** 
+
+-   Host：请求的服务器域名
+-   Content-Type：请求体的媒体类型，如`application/json`、`application/x-www-form-urlencoded`等
+-   Accept：客户端能接收的内容类型
+-   Authorization：认证信息，如 Bearer 令牌
+-   User-Agent：发起请求的应用类型、操作系统、软件版本等
+-   Cookie：存储在客户端的与服务器相关的信息
+
+**请求体（Body）：** 
+
+-   对于 POST、PUT 等请求，这部分包含要发送到服务器的数据。数据可以是 JSON、表单数据、文件等
+
+#### 网络响应（HTTP Response）
+
+**状态行：** 
+
+-   协议版本：通常是 HTTP/1.1 或 HTTP/2
+-   状态码：如 200 表示成功，404 表示未找到，500 表示服务器错误等
+-   状态消息：对状态码的简短描述
+
+**响应头（Headers）：** 
+
+-   Content-Type：响应体的媒体类型
+-   Content-Length：响应体的长度
+-   Set-Cookie：服务器设置在客户端的 Cookie
+-   Server：服务器软件的信息
+-   Date：消息发送的时间
+
+**响应体（Body）：** 
+
+-   从服务器返回的数据，可以是 HTML、JSON、图片等
+
+#### 请求与响应的交互过程
+
+1.  **建立连接：** 客户端通过 DNS 解析服务器的 IP 地址，并与服务器建立 TCP 连接。
+2.  **发送请求：** 客户端向服务器发送 HTTP 请求。
+3.  **服务器处理请求：** 服务器接收到请求后，根据请求方法和路径处理请求，并生成响应。
+4.  **发送响应：** 服务器将生成的响应发送回客户端。
+5.  **关闭连接：** 在完成响应后，通常关闭 TCP 连接。对于 HTTP/1.1，可以通过 Connection: keep-alive 头保持连接打开，以便传输多个请求和响应。
+
 ### urllib 库
 
-#### request 模块
+####　request 模块
 
 **方法：** 
 
