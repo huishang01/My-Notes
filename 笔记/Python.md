@@ -891,7 +891,7 @@ timeline.render("文件名")
 | `ThemeType.CHALK`          | 红蓝绿 | 黑色背景   |
 | `ThemeType.ESSOS`          | 红黄   | 暖色系     |
 | `ThemeType.INFOGRAPHIC`    | 红蓝黄 | 偏亮       |
-| `ThemeType.MACARONS`       | 紫蓝   | 灰白背景   |
+| `ThemeType.MACARONS`       | 紫蓝   |            |
 | `ThemeType.PURPLE_PASSION` | 粉紫   | 灰色背景   |
 | `ThemeType.ROMA`           | 红黑灰 | 偏暗       |
 | `ThemeType.ROMANTIC`       | 红粉蓝 | 淡黄色背景 |
@@ -904,3 +904,203 @@ timeline.render("文件名")
 my_list.sort(key=lambda element: element[1], reverse=Ture)
 ```
 
+
+
+## 爬虫
+
+------
+
+### 什么是爬虫
+
+1.   通过一个程序，根据 URL 进行爬取网页，获取有用信息
+2.   使用程序模拟浏览器，去向服务器发送请求，获取响应信息
+
+#### 基本原理
+
+1.   **选择起始网页：** 爬虫从一组起始 URL 开始工作。
+2.   **获取网页内容：**通过网络请求（如 HTTP 请求）获取网页的 HTML 内容。
+3.   **解析网页内容：** 提取网页中的链接、文本和其他信息。
+4.   **跟踪链接：** 根据预设的规则，选择一些链接继续访问。
+5.   **重复过程：** 对新的网页重复上述过程，直到满足某种条件（如访问了足够多的网页或没有新的链接可访问）。
+
+#### 关键组件
+
+-   **URL管理器：** 负责管理待抓取的 URL 队列和已抓取的 URL 列表。
+-   **网页下载器：** 负责从互联网上下载网页，常用的下载器有 `urllib`、`requests` 等。
+-   **网页解析器：** 负责提取网页中的有用信息，常用的解析器有 `BeautifulSoup`、`lxml`、`re` 等。
+-   **数据存储器：** 负责存储爬取到的数据，可以是文件、数据库等。
+
+#### 用途
+
+-   **搜索引擎：** 如 Google、Bing 等，通过爬虫抓取网页内容，建立索引，提供搜索服务。
+-   **数据分析：** 抓取特定网站的数据，进行市场分析、舆情监控等。
+-   **价格监控：** 监控电商平台的价格变化，进行价格比较。
+-   **内容聚合：** 抓取多个网站的内容，集中展示在一个平台上。
+
+#### 爬虫分类
+
+**通用爬虫：**
+
+-   实例：
+
+    ​	各大搜索引擎
+
+-   功能
+
+    ​	访问网页 -> 抓取数据 -> 数据存储 -> 数据处理 -> 提供检索服务
+
+-   robots 协议：
+
+    ​	一个约定俗成的协议，添加 robots.txt 文件，来说明本网站哪些内容不可以被抓取，起不到限制作用
+
+    ​	自己写的爬虫无需遵守
+
+-   网站排名（SEO）：
+
+    1.   根据 pagerank 算法值进行排名（参考个网站流量、点击率等指标）
+    2.    百度竞价排名
+
+-   缺点：
+    1.    抓取的数据大多是无用的
+    2.   .不能根据用户的需求来精准获取数据
+
+**聚焦爬虫：** 
+
+-   功能：根据需求，实现爬虫程序，抓取需要的数据
+
+-   设计思路：
+
+    1.   确定要爬取的 URL
+
+         如何获取 URL
+
+    2.   模拟浏览器通过 HTTP 协议访问 URL，获取服务器返回的 HTML 代码
+
+         如何访问
+
+    3.   解析 HTML 字符串（根据一定规则提取需要的数据）
+
+         如何解析
+
+**反爬手段：** 
+
+1.   User-Agent：用户代理，简称 UA，它是一个特殊字符串头，使得服务器能够识别客户使用的操作系统及版
+     本、CPU 类型、浏览器及版本、浏览器渲染引擎、浏览器语言、浏览器插件等。
+
+2.   代理 IP：西次代理、快代理
+
+     高匿名、匿名、透明代理的区别：
+
+     1.   透明代理：对方服务器知道你使用了代理，也知道你的真实 IP
+
+     2.   匿名代理：对方服务器知道你使用了代理，但不知道你的真实 IP
+     3.   高匿名代理：对方服务器不知道你使用了代理，更不知道你的真实 IP
+
+3.   验证码访问：打码平台
+
+4.   动态加载网页：网站返回的是 JS 数据，并不是网页的真实数据
+
+     selenium 驱动真实的浏览器发送请求
+
+5.   数据加密
+
+     分析 JS 代码
+
+### urllib 库
+
+####　request 模块
+
+**方法：** 
+
+-   打开和读取 URL ：`urllib.request.urlopen(url, data=None, [timeout, ], cafile=None, capath=None, cadefault=False, context=None)`
+
+    | 参数        | 说明                                   |
+    | ----------- | -------------------------------------- |
+    | `url`       | 要打开的 URL                           |
+    | `data`      | 发送到服务器的数据，默认为 `None`      |
+    | `timeout`   | 超时时间，默认为 `None`                |
+    | `cafile`    | CA 证书文件，默认为 `None`             |
+    | `capath`    | CA 证书路径，默认为 `None`             |
+    | `cadefault` | 是否使用默认的 CA 证书，默认为 `False` |
+    | `context`   | SSL 上下文，默认为 `None`              |
+
+-   创建一个请求对象：`urllib.request.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)`
+
+    | 参数              | 说明                        |
+    | ----------------- | --------------------------- |
+    | `url`             | 请求的 URL                  |
+    | `data`            | 发送的数据，默认为 `None`   |
+    | `headers`         | 请求头，默认为空字典        |
+    | `origin_req_host` | 请求的主机名，默认为 `None` |
+    | `unverifiable`    | 是否可验证，默认为 `False`  |
+    | `method`          | 请求方法，默认为 `None`     |
+
+**属性：** 
+
+| 方法名        | 作用                                           | 实例                                  |
+| ------------- | ---------------------------------------------- | ------------------------------------- |
+| `read()`      | 读取指定长度的内容，不写参数就是读取全部内容   | `myURL.read(300)`<br />`myURL.read()` |
+| `readline()`  | 读取一行内容                                   | `myURL.readline()`                    |
+| `readlines()` | 读取全部内容到一个列表中，每个元素都是一行内容 | `lines = myURL.readlines()`           |
+| `getcode()`   | 获取 HTTP 状态码，例如检查网页是否存在         | `myURL.getcode()`                     |
+| `info()`      | 获取 HTTP 响应头信息                           | `myURL.info()`                        |
+
+#### error 模块
+
+**由`urllib.request`引发的异常：** `urllib.error.URLError`
+
+-   `reason`: 异常原因
+
+**HTTP 请求错误：** `urllib.error.HTTPError`
+
+-   `code`: HTTP 状态码
+-   `reason`: 错误原因
+-   `headers`: HTTP 响应头
+
+#### urllib.parse 模块
+
+**解析 URL：** `urllib.parse.urlparse(urlstring, scheme='', allow_fragments=True)`
+
+| 参数              | 说明                        |
+| ----------------- | --------------------------- |
+| `urlstring`       | 要解析的 URL 字符串         |
+| `scheme`          | 默认的协议，默认为空字符串  |
+| `allow_fragments` | 是否允许片段，默认为 `True` |
+
+ **将 URL 组件组合成一个 URL：** `urllib.parse.urlunparse(parts)`
+
+| 参数    | 说明           |
+| ------- | -------------- |
+| `parts` | URL 组件的元组 |
+
+**拼接 URL：** `urllib.parse.urljoin(base, url, allow_fragments=True)`
+
+| 参数              | 说明                        |
+| ----------------- | --------------------------- |
+| `base`            | 基础 URL                    |
+| `url`             | 相对 URL                    |
+| `allow_fragments` | 是否允许片段，默认为 `True` |
+
+**将字典转换为 URL 编码的查询字符串：** `urllib.parse.urlencode(query, doseq=False)`
+
+| 参数    | 说明                       |
+| ------- | -------------------------- |
+| `query` | 要编码的字典               |
+| `doseq` | 是否序列化，默认为 `False` |
+
+**将查询字符串解析回字典：** `urllib.parse.parse_qs(qs, keep_blank_values=False, strict_parsing=False)`
+
+| 数                  | 说明                         |
+| ------------------- | ---------------------------- |
+| `qs`                | 查询字符串                   |
+| `keep_blank_values` | 是否保留空值，默认为 `False` |
+| `strict_parsing`    | 是否严格解析，默认为 `False` |
+
+#### urllib.robotparser 模块
+
+**创建一个 `RobotFileParser` 对象：** `urllib.robotparser.RobotFileParser()`
+
+-   `set_url(url)`: 设置 `robots.txt` 文件的 URL
+-   `read()`: 读取并解析 `robots.txt` 文件
+-   `parse(lines)`: 解析 `robots.txt` 文件的行
+-   `can_fetch(useragent, url)`: 检查指定的 `useragent` 是否可以抓取 `url`
