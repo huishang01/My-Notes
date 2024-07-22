@@ -1061,40 +1061,67 @@ my_list.sort(key=lambda element: element[1], reverse=Ture)
 
 ####　request 模块
 
-**方法：** 
+**打开一个URL并返回响应对象 ：**
 
--   打开和读取 URL ：`urllib.request.urlopen(url, data=None, [timeout, ], cafile=None, capath=None, cadefault=False, context=None)`
+`urllib.request.urlopen(url, data=None, [timeout, ], cafile=None, capath=None, cadefault=False, context=None)`
 
-    | 参数        | 说明                                   |
-    | ----------- | -------------------------------------- |
-    | `url`       | 要打开的 URL                           |
-    | `data`      | 发送到服务器的数据，默认为 `None`      |
-    | `timeout`   | 超时时间，默认为 `None`                |
-    | `cafile`    | CA 证书文件，默认为 `None`             |
-    | `capath`    | CA 证书路径，默认为 `None`             |
-    | `cadefault` | 是否使用默认的 CA 证书，默认为 `False` |
-    | `context`   | SSL 上下文，默认为 `None`              |
+| 参数        | 说明                                                         |
+| ----------- | ------------------------------------------------------------ |
+| `url`       | 要打开的 URL                                                 |
+| `data`      | 可选参数，用于指定发送到服务器的数据。默认为`None`，表示不发送数据 |
+| `timeout`   | 可选参数，指定超时时间（单位为秒）。默认为`socket._GLOBAL_DEFAULT_TIMEOUT`，表示使用全局默认超时时间 |
+| `cafile`    | 可选参数，指定 CA 证书文件，默认为 `None`                    |
+| `capath`    | 可选参数，指定 CA 证书路径，默认为 `None`                    |
+| `cadefault` | 是否使用默认的 CA 证书，默认为 `False`                       |
+| `context`   | 可选参数，用于指定SSL上下文，用于HTTPS请求中的证书验证和其他配置 |
 
--   创建一个请求对象：`urllib.request.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)`
+-   方法：
 
-    | 参数              | 说明                        |
-    | ----------------- | --------------------------- |
-    | `url`             | 请求的 URL                  |
-    | `data`            | 发送的数据，默认为 `None`   |
-    | `headers`         | 请求头，默认为空字典        |
-    | `origin_req_host` | 请求的主机名，默认为 `None` |
-    | `unverifiable`    | 是否可验证，默认为 `False`  |
-    | `method`          | 请求方法，默认为 `None`     |
+    | 方法名        | 作用                                           |
+    | ------------- | ---------------------------------------------- |
+    | `read()`      | 读取指定长度的内容，不写参数就是读取全部内容   |
+    | `readline()`  | 读取一行内容                                   |
+    | `readlines()` | 读取全部内容到一个列表中，每个元素都是一行内容 |
+    | `getcode()`   | 获取 HTTP 状态码，例如检查网页是否存在         |
+    | `info()`      | 获取 HTTP 响应头信息                           |
+    | `geturl()`    | 获取网页的 URL                                 |
 
-**属性：** 
+```python
+# 导包
+import urllib.request
+# 定义一个 URL
+url = "https://www.baidu.com/"
+# 模拟浏览器向用户发送请求
+res = urllib.request.urlopen(url)
+# 获取页面源码，解码格式为UTF-8
+content = res.read().decode("UTF-8")
+```
 
-| 方法名        | 作用                                           | 实例                                  |
-| ------------- | ---------------------------------------------- | ------------------------------------- |
-| `read()`      | 读取指定长度的内容，不写参数就是读取全部内容   | `myURL.read(300)`<br />`myURL.read()` |
-| `readline()`  | 读取一行内容                                   | `myURL.readline()`                    |
-| `readlines()` | 读取全部内容到一个列表中，每个元素都是一行内容 | `lines = myURL.readlines()`           |
-| `getcode()`   | 获取 HTTP 状态码，例如检查网页是否存在         | `myURL.getcode()`                     |
-| `info()`      | 获取 HTTP 响应头信息                           | `myURL.info()`                        |
+>   res 是 HTTPResponse 类型
+
+**下载一个 URL 的内容到本地文件：** 
+
+`urlretrieve(url, filename=None, reporthook=None, data=None)`
+
+| 参数         | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| `url`        | 要下载的 URL                                                 |
+| `filename`   | 可选参数，指定保存内容的本地文件名。如果不指定，将自动生成一个临时文件名 |
+| `reporthook` | 可选参数，用于指定一个回调函数，用于显示下载进度             |
+| `data`       | 可选参数，用于指定发送到服务器的数据。默认为`None`，表示不发送数据 |
+
+**创建一个 HTTP 请求对象：**
+
+`urllib.request.Request(url, data=None, headers={}, origin_req_host=None, unverifiable=False, method=None)`
+
+| 参数              | 说明                                                         |
+| ----------------- | ------------------------------------------------------------ |
+| `url`             | 要请求的 URL                                                 |
+| `data`            | 可选参数，用于指定发送到服务器的数据。默认为`None`，表示不发送数据 |
+| `headers`         | 可选参数，用于指定请求头信息的字典                           |
+| `origin_req_host` | 可选参数，用于指定请求头中的"Host"字段值                     |
+| `unverifiable`    | 可选参数，指示请求是否是无法验证的                           |
+| `method`          | 可选参数，用于指定请求方法（ GET、POST 等）。默认为`None`，表示使用默认方法 |
 
 #### error 模块
 
