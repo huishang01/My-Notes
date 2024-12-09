@@ -670,7 +670,7 @@ for event, element in etree.iterparse("large.xml", events=("start", "end")):
 #### 常见问题
 
 -   `UnicodeDecodeError` ：确保文档编码与解析时的设置一致，例如指定 `encoding="utf-8"``
--   ``XMLSyntaxError` ：确保输入的 XML 格式正确
+-   `XMLSyntaxError` ：确保输入的 XML 格式正确
 -   HTML 格式不规范：使用 `html.fromstring` 或 `html.parser` 来处理不规范的 HTML
 
 
